@@ -2,49 +2,35 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   wishlist:{
-    type: [mongoose.Schema.Types.ObjectId], //points to apps created with the app model
-    default: [],
-  },
-  purchases:{
-    type: [mongoose.Schema.Types.ObjectId], //points to orders created with the order model
+    type: [mongoose.Schema.Types.ObjectId], //points to app document ids created with the app model
     default: [],
   },
   firstName:{
     type: String,
     min: 1,
-    required
+    required: true,
   },
   lastName:{
     type: String,
     min: 1,
-    required,
+    required: true,
   },
-  ccn:{
-    type: Number,
-    min: 16,
-    max: 19,
-  },
-  address:{
+  email:{
     type: String,
-    min: 5,
+    required: true,
+    validator: function(value) {
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      return emailRegex.test(value);
+    },
   },
-  addressLineTwo:{
+  password:{
     type: String,
-  },
-  state:{
-    type: String,
-  },
-  city:{
-    type: String,
-  },
-  phoneNumber:{
-    type: Number,
-    min:10,
-    max:11,
+    required: true,
   },
   dateCreated:{
     type: Date,
-    required,
+    required: true,
+    default: Date.now(),
   },
   frozen:{
     type:Boolean,
