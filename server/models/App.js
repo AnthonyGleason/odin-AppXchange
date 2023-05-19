@@ -20,7 +20,7 @@ const AppSchema = new mongoose.Schema({
   salesCount:{
     type: Number,
     default: 0,
-    required,
+    required: true,
   },
   category:{
     type: String,

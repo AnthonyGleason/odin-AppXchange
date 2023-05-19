@@ -11,6 +11,9 @@ const createUser = async function(firstName,lastName,email,password){
 const getUserByDocID = async function(docID){
   return await UserModel.findById(docID);
 };
+const getUserByEmail = async function(email){
+  return await UserModel.findOne({email: email});
+}
 const getAllUsers = async function(){
   return await UserModel.find({});
 };
