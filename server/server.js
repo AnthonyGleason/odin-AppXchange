@@ -9,7 +9,7 @@ app.listen(PORT,()=>{
   console.log(`Server listening on port ${PORT}`);
 });
 
-  ///unauthenticated routes///
+  //unauthenticated routes//
   
 //get all apps
 app.get('/api/app',async (req,res,next)=>{
@@ -27,12 +27,12 @@ app.get('/api/apps/:id',async (res,req,next)=>{
   res.json({app: await getAppByDocID(id)})
 })
 
-    ///authenticated routes///
+//create a new user
 
-//update user wishlist
-app.put('/api/user/wishlist',async (req,res,next)=>{
-  const id = req.body.id; //change this later to get id from passport payload
-});
+//login user
+
+    //authenticated routes//
+
 //update user account settings
 app.put('/api/user/settings',async (req,res,next)=>{
   const id = req.body.id; //change this later to get id from passport payload
@@ -51,7 +51,29 @@ app.get('/api/user/purchases',async (req,res,next)=>{
   const id = req.body.id; //change this later to get id from passport payload
   res.json({purchases: await getOrdersByUserDocID(id)});
 });
+//add to wishlist
+app.put('/api/user/wishlist/:id',async (req,res,next)=>{
+  const userID = req.body.id; //change this later to get id from passport payload
+  const appID = req.params.id;
+  let user = await getUserByDocID(userID);
+  if (!user.wishlist.includes(appID)) user.wishlist.push(appID);
+  await updateUserByDocID(userID,user);
+  res.status(200).json({message: "User's wishlist successfully updated"});
+});
+//remove from wishlist
+app.delete('/api/user/wishlist/:id', async(req,res,next)=>{
+  const userID = req.body.id; //change this later to get id from passport payload
+  const appID = req.params.id;
+  let user = await getUserByDocID(userID);
+  if (user.wishlist.includes(appID)) user.wishlist.splice(user.wishlist.indexOf(appID),1);
+  await updateUserByDocID(userID,user);
+  res.status(200).json({message: "User's wishlist successfully updated"});
+});
+
+    //not completed//
+
 //purchase an app
 app.post('/api/apps/:id',async (req,res,next)=>{
-  const id = req.params.id;
+  const userID = req.body.id; //change this later to get id from passport payload
+  const appID = req.params.id;
 });
