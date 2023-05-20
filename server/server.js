@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
-const { getAllApps, findAppByName, getAppByDocID } = require('./controllers/App');
-const { getOrdersByUserDocID } = require('./controllers/Order');
-const { getUserByDocID, updateUserByDocID } = require('./controllers/User');
+const { getAllApps, findAppByName, getAppByDocID, createApp } = require('./controllers/App');
+const { getOrdersByUserDocID, createOrder, getOrderByDocID, updateOrderByDocID } = require('./controllers/Order');
+const { getUserByDocID, updateUserByDocID , getUserByEmail,createUser} = require('./controllers/User');
 const app = express();
 const PORT = 5000;
 const jwt = require('jsonwebtoken');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
+
 const cors = require('cors');
 app.use(cors())
 
@@ -36,23 +38,23 @@ app.listen(PORT,()=>{
   
 //get all apps
 app.get('/api/app',async (req,res,next)=>{
-  res.json({apps: await getAllApps});
+  res.status(200).json({apps: await getAllApps()});
 });
 
 //search for an app by id
 app.get('/api/search/:id',async (req,res,next)=>{
   const id = req.params.id;
-  res.json({apps: await findAppByName(id)});
+  res.status(200).json({apps: await findAppByName(id)});
 });
 //get information for a single app by app id
 app.get('/api/apps/:id',async (req,res,next)=>{
   const id = req.params.id;
-  res.json({app: await getAppByDocID(id)})
+  res.status(200).json({app: await getAppByDocID(id)})
 })
 
 //create a new user
 app.post('/api/user/register',async (req,res,next)=>{
-  const salt = bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(req.body.password,salt);
   const user = await createUser(
     req.body.firstName,
@@ -67,7 +69,7 @@ app.post('/api/user/register',async (req,res,next)=>{
 app.post('/api/user/login',async (req,res,next)=>{
   const user = await getUserByEmail(req.body.email);
   if (await bcrypt.compare(req.body.password,user.password)){
-    const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn: '1d'});
+    const token = jwt.sign(user.toObject(),process.env.ACCESS_TOKEN_SECRET,{expiresIn: '1d'});
     res.status(200).json({token: token});
   }else{
     res.status(401);
@@ -112,10 +114,31 @@ app.delete('/api/user/wishlist/:id',authenticateToken, async(req,res,next)=>{
   res.status(200).json({message: "User's wishlist successfully updated"});
 });
 
-    //not completed//
-
 //purchase an app
-app.post('/api/apps/:id',async (req,res,next)=>{
-  const userID = req.body.id; //change this later to get id from passport payload
+app.post('/api/apps/:id',authenticateToken,async (req,res,next)=>{
+  const userID = req.payload._id;
   const appID = req.params.id;
+  const app = await getAppByDocID(appID);
+  let order = '';
+  stripe.charges.create(
+    {
+      amount: app.price, // Amount in cents
+      currency: 'usd',
+      source: 'tok_visa', // Use a test card number provided by Stripe
+      description: `Charged user ${userID} for a purchase of app ${appID}`,
+    },
+    async function(err, charge) {
+      if (err) {
+        console.error(err);
+        res.status(400).json({error: err});
+      } else {
+        console.log(charge);
+        order = await createOrder(userID);
+        res.status(200).json({order: order._id});
+        //update order status to succeeded from processing
+        order.status = 'Success';
+        await updateOrderByDocID(order._id,order);
+      }
+    }
+  );
 });

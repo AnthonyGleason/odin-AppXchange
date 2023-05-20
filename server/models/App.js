@@ -27,7 +27,7 @@ const AppSchema = new mongoose.Schema({
     required: true,
     default: 'General',
   },
-  price:{
+  price:{ //in cents
     type: Number,
     required: true,
     default: 1,

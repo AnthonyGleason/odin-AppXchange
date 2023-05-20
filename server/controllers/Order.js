@@ -1,11 +1,8 @@
 const OrderModel = require('../models/Order');
-const mongoose = require('mongoose');
 
-const createOrder = async function(){
+const createOrder = async function(userID){
   return await OrderModel.create({
-    user:{
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    user: userID,
   });
 };
 const getOrderByDocID = async function(docID){

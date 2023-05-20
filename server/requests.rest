@@ -1,0 +1,43 @@
+//buy app
+POST http://localhost:5000/api/apps/64687ef41fc279a41823fff1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY4N2IxY2ExNjUzYTA0MWEwMDBhNDkiLCJ3aXNobGlzdCI6W10sImZpcnN0TmFtZSI6IkZpcnN0IiwibGFzdE5hbWUiOiJMYXN0IiwiZW1haWwiOiJhQGEuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGUzUzBRR09lak50bktRR2FnMFcwLlZ6UjNqc3FGalN6SzAzL2NOTkpwZk5WR1g4bGYxZ2kiLCJkYXRlQ3JlYXRlZCI6IjIwMjMtMDUtMjBUMDc6NDc6MzguMDE3WiIsImZyb3plbiI6ZmFsc2UsIl9fdiI6MCwiaWF0IjoxNjg0NTY5MTA3LCJleHAiOjE2ODQ2NTU1MDd9.iVQOFqKJujFARz-5ouKnVEQ8DwkSlPGt-t6NeJM7HgQ
+Content-Type: application/json
+
+{
+  
+}
+
+###
+
+//register a user
+POST http://localhost:5000/api/user/register
+Content-Type: application/json
+
+{
+"firstName": "First",
+"lastName": "Last",
+"email": "a@a.com",
+"password": "pass"
+}
+
+###
+
+//login a user
+POST http://localhost:5000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "a@a.com",
+  "password": "pass"
+}
+
+###
+
+//search for an app
+
+GET http://localhost:5000/api/search/test
+Content-Type: application/json
+
+{
+
+}

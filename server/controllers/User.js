@@ -29,5 +29,6 @@ module.exports = {
   getUserByDocID,
   getAllUsers,
   updateUserByDocID,
-  deleteUserByDocID
+  deleteUserByDocID,
+  getUserByEmail
 }
