@@ -7,10 +7,10 @@ const app = express();
 const PORT = 5000;
 const jwt = require('jsonwebtoken');
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
-
 const cors = require('cors');
 app.use(cors())
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 let authenticateToken = function(req,res,next){
   const authHeader = req.headers['authorization'];
   const token = authHeader.split(' ')[1];
@@ -41,10 +41,10 @@ app.get('/api/app',async (req,res,next)=>{
   res.status(200).json({apps: await getAllApps()});
 });
 
-//search for an app by id
-app.get('/api/search/:id',async (req,res,next)=>{
-  const id = req.params.id;
-  res.status(200).json({apps: await findAppByName(id)});
+//search for an app by name
+app.get('/api/search/:name',async (req,res,next)=>{
+  const name = req.params.name;
+  res.status(200).json({apps: await findAppByName(name)});
 });
 //get information for a single app by app id
 app.get('/api/apps/:id',async (req,res,next)=>{
@@ -54,6 +54,8 @@ app.get('/api/apps/:id',async (req,res,next)=>{
 
 //create a new user
 app.post('/api/user/register',async (req,res,next)=>{
+  if (req.body.password!==req.body.passwordConfirm) res.json({error: 'Passwords do not match!'});
+  console.log(req.body.password);
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(req.body.password,salt);
   const user = await createUser(
@@ -65,16 +67,21 @@ app.post('/api/user/register',async (req,res,next)=>{
   res.json({message: `Successfully created a user with docID ${user._id}`});
 });
 
-//login user
-app.post('/api/user/login',async (req,res,next)=>{
+// Login user
+app.post('/api/user/login', async (req, res, next) => {
   const user = await getUserByEmail(req.body.email);
-  if (await bcrypt.compare(req.body.password,user.password)){
-    const token = jwt.sign(user.toObject(),process.env.ACCESS_TOKEN_SECRET,{expiresIn: '1d'});
-    res.status(200).json({token: token});
-  }else{
-    res.status(401);
+  if (!user) {
+    res.status(404).json({ message: `User not found with email ${req.body.email}` });
+  } else if (!req.body.password) {
+    res.status(400).json({ message: 'Password input is empty' });
+  } else if (await bcrypt.compare(req.body.password, user.password)) {
+    const token = jwt.sign(user.toObject(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+    res.status(200).json({ token: token });
+  } else {
+    res.status(401).json({ message: 'Invalid password' });
   }
 });
+
     //authenticated routes//
 
 //update user account settings
