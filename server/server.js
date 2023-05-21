@@ -36,6 +36,16 @@ app.listen(PORT,()=>{
 
   //unauthenticated routes//
   
+app.post('/api/app/create',async(req,res,next)=>{
+  let name = req.body.name;
+  let desc = req.body.desc;
+  let publisher = req.body.publisher;
+  let category = req.body.category;
+  let price = req.body.price;
+  let imgNames = req.body.imgNames;
+
+  await createApp(name,desc,publisher,category,price,imgNames);
+})
 //get all apps
 app.get('/api/app',async (req,res,next)=>{
   res.status(200).json({apps: await getAllApps()});

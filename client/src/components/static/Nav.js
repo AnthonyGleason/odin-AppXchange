@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import searchIMG from '../assets/search.svg';
-import menuIMG from '../assets/menu-outline.svg';
+import searchIMG from '../../assets/search.svg';
+import menuIMG from '../../assets/menu-outline.svg';
 
 export default function Nav(){
   const [searchInput,setSearchInput] = useState('');

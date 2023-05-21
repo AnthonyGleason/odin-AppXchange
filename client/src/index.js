@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import App from './components/App';
-import Footer from './components/Footer';
-import Nav from './components/Nav';
+import Footer from './components/static/Footer';
+import Nav from './components/static/Nav';
 import Register from './components/Register';
-import ItemPage from './components/ItemPage';
+import ItemPage from './components/appPage/AppPage';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 

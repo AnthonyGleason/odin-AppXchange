@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Item(){
+export default function AppPage(){
   return(
-    <div className='item'>
+    <div className='AppPage'>
       item
     </div>
   )

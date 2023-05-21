@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import Store from './Store';
+import Store from './store/Store';
 function App() {
   return (
     <div className="App">

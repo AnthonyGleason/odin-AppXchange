@@ -36,6 +36,11 @@ const AppSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false,
+  },
+  imgNames:{
+    type: [String],
+    required: true,
+    default: [],
   }
 })
 

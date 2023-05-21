@@ -1,12 +1,13 @@
 const AppModel = require('../models/App');
 
-const createApp = async function(name,desc,publisher,category,price){
+const createApp = async function(name,desc,publisher,category,price,imgNames){
   return await AppModel.create({
     name: name,
     desc: desc,
     publisher: publisher,
     category: category,
     price: price,
+    imgNames: imgNames,
   });
 };
 
