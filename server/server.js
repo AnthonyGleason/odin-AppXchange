@@ -150,7 +150,7 @@ app.post('/api/apps/:id',authenticateToken,async (req,res,next)=>{
         res.status(400).json({error: err});
       } else {
         console.log(charge);
-        order = await createOrder(userID);
+        order = await createOrder(userID,appID);
         res.status(200).json({order: order._id});
         //update order status to succeeded from processing
         order.status = 'Success';

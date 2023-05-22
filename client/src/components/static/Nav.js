@@ -22,6 +22,7 @@ export default function Nav(){
       if (data.token){
         localStorage.setItem('jwt',data.token);
         console.log('logged in user');
+        window.location.href='.';
       }
     })
   };
@@ -29,6 +30,7 @@ export default function Nav(){
     if (!localStorage.getItem('jwt')){
       return(
         <div>
+          <a href='/register'>Register</a>
           <div 
             onClick={()=>{
               const login = document.querySelector('#login');
@@ -41,7 +43,7 @@ export default function Nav(){
             className='nav-dropdown'
           >
             <p>Log-In</p>
-            <img alt='drop down menu arrow facing down' src={menuIMG} />
+            {/*<img alt='drop down menu arrow facing down' src={menuIMG} />*/}
           </div>
           {/*leaving method and action here for readability however the submission is handled through handleLogin function*/}
           <form id='login' className='hidden' method='POST' action='http://localhost:5000/api/user/login'> 
@@ -60,6 +62,7 @@ export default function Nav(){
     }else{
       return(
         <div>
+          <p>My Orders</p>
           <p onClick={()=>{
             localStorage.removeItem('jwt');
             window.location.href='/';
@@ -72,11 +75,11 @@ export default function Nav(){
   return(
     <div className='nav'>
       <h3>AppZone</h3>
-      <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
+      {/* <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
         <img alt='search-logo' src={searchIMG} />
         <input value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} />
         <button>Search</button>
-      </form>
+      </form> */}
       {
         getNavMenu()
       }

@@ -13,12 +13,12 @@ export default function Register(){
           <input id='lastName' name='lastName' type='text' />
         </div>
         <div>
-          <label htmlFor='email'>Email:</label>
-          <input id='email' name='email' type='email' />
+          <label htmlFor='emailReg'>Email:</label>
+          <input id='emailReg' name='email' type='email' />
         </div>
         <div>
-          <label htmlFor='password'>Password:</label>
-          <input type='password' name='password' id='password' />
+          <label htmlFor='passwordReg'>Password:</label>
+          <input type='password' name='password' id='passwordReg' />
         </div>
         <div>
           <label htmlFor='passwordConfirm'>Password Again:</label>

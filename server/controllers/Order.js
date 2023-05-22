@@ -1,8 +1,9 @@
 const OrderModel = require('../models/Order');
 
-const createOrder = async function(userID){
+const createOrder = async function(userID,appID){
   return await OrderModel.create({
     user: userID,
+    appID: appID,
   });
 };
 const getOrderByDocID = async function(docID){

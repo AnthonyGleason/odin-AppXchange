@@ -1,6 +1,6 @@
 //buy app
-POST http://localhost:5000/api/apps/64687ef41fc279a41823fff1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY4N2IxY2ExNjUzYTA0MWEwMDBhNDkiLCJ3aXNobGlzdCI6W10sImZpcnN0TmFtZSI6IkZpcnN0IiwibGFzdE5hbWUiOiJMYXN0IiwiZW1haWwiOiJhQGEuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGUzUzBRR09lak50bktRR2FnMFcwLlZ6UjNqc3FGalN6SzAzL2NOTkpwZk5WR1g4bGYxZ2kiLCJkYXRlQ3JlYXRlZCI6IjIwMjMtMDUtMjBUMDc6NDc6MzguMDE3WiIsImZyb3plbiI6ZmFsc2UsIl9fdiI6MCwiaWF0IjoxNjg0NTY5MTA3LCJleHAiOjE2ODQ2NTU1MDd9.iVQOFqKJujFARz-5ouKnVEQ8DwkSlPGt-t6NeJM7HgQ
+POST http://localhost:5000/api/apps/646a53f0b53851cda14d10b9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY4N2IxY2ExNjUzYTA0MWEwMDBhNDkiLCJ3aXNobGlzdCI6W10sImZpcnN0TmFtZSI6IkZpcnN0IiwibGFzdE5hbWUiOiJMYXN0IiwiZW1haWwiOiJhQGEuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGUzUzBRR09lak50bktRR2FnMFcwLlZ6UjNqc3FGalN6SzAzL2NOTkpwZk5WR1g4bGYxZ2kiLCJkYXRlQ3JlYXRlZCI6IjIwMjMtMDUtMjBUMDc6NDc6MzguMDE3WiIsImZyb3plbiI6ZmFsc2UsIl9fdiI6MCwiaWF0IjoxNjg0NzEzODM4LCJleHAiOjE2ODQ4MDAyMzh9.1WEz2dUixzgnG68ArZqdX0ktNaMie17c82D7pVwXKVI
 Content-Type: application/json
 
 {
@@ -62,10 +62,10 @@ POST http://localhost:5000/api/app/create
 Content-Type: application/json
 
 {
-  "name": "Minecraft",
-  "desc": "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off dangerous mobs. Create, explore and survive alone or with friends on mobile devices or Windows 10.",
-  "publisher": "Mojang",
+  "name": "Grand Theft Auto: San Andreas",
+  "desc": "Five years ago, Carl Johnson escaped from the pressures of life in Los Santos, San Andreas, a city tearing itself apart with gang trouble, drugs and corruption. Where filmstars and millionaires do their best to avoid the dealers and gangbangers. Now, it’s the early 90’s. Carl’s got to go home. His mother has been murdered, his family has fallen apart and his childhood friends are all heading towards disaster.",
+  "publisher": "Rockstar Games",
   "category": "Games",
-  "price": 699,
-  "imgNames": ["minecraft1","minecraft2"]
+  "price": 799,
+  "imgNames": ["gtasa1","gtasa2"]
 }

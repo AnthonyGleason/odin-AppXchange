@@ -5,7 +5,6 @@ import App from './components/App';
 import Footer from './components/static/Footer';
 import Nav from './components/static/Nav';
 import Register from './components/Register';
-import ItemPage from './components/appPage/AppPage';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
@@ -16,7 +15,6 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='/app/:id' element={<ItemPage />} />
         <Route path='/register' element={<Register />} />
       </Routes>
     </BrowserRouter>

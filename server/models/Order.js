@@ -14,6 +14,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: 'Processing',
+  },
+  appID:{
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   }
 });
 
