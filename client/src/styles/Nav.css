@@ -1,17 +1,45 @@
 .nav{
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  box-shadow: 0 4px 8px hsl(240, 3%, 12%);
-  background-color: #161617CC;
-  height: 5vh;
+  justify-content: space-between;
+  height: max-content;
   color: white;
   text-decoration: none;
+  padding: 15px;
   top: 0;
   position: sticky;
+  z-index: 2;
+  background-color: rgba(0,0,0,0.85);
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+.nav-logo{
+  font-weight: 600;
+  font-size: 40px
+}
+.logo-alt{
+  color: rgb(160, 160, 160);
+  font-style: italic;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: absolute;
 }
 .nav-menu{
   display: flex;
   align-items: center;
+  gap: 20px;
+  font-size: 25px;
+  font-weight: 600;
+}
+.search{
+  display: flex;
   gap: 10px;
+}
+.search input{
+  width: 40vw;
+  max-width: 600px;
+  border-radius: 18px;
+}
+.search-logo{
+  width: 30px;;
 }

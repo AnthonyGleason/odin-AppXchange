@@ -5,7 +5,8 @@
 .greeting{
   align-self: center;
   max-width: 500px;
-  margin: 15px;
+  margin: 25px;
+  color: white;
 }
 .store-item-container{
   display: grid;
@@ -13,25 +14,59 @@
   gap: 5px;
   justify-content: center;
   align-items: center;
-  background-color: #161617CC;
   padding: 10px;
 }
 .store-item{
   background-position: center;
-  box-shadow: 0 4px 8px #1d1d1f;
   background-repeat: no-repeat;
-  height: 50vh;
+  height: 60vh;
+  max-height: 700px;
   margin: 5px;
+  color: white;
+  display: flex;
+  padding-left: 7%;
+  cursor: pointer;
   border-radius: 18px;
+}
+.item-info{
+  background-color: #161617;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+  font-weight: 600;
+  font-size: 2vh;
+  padding: 5px;
+  gap: 10px;
+}
+.item-info *{
+  border-bottom: 2px solid rgb(102, 102, 102);
+  padding: 2px;
 }
 .checkout{
   position:fixed;
   bottom: 0;
-  max-height: 300px;
-  height: 50vh;
-  background-color: gainsboro;
+  height: max-content;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.85);
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  font-size: 20px;
+  gap: 8px;
+  border-top: 1px solid rgb(255, 255, 255);
+}
+.checkout div{
+  display: flex;
+  gap: 10px;
+}
+.checkout img{
+  margin-right: 20%;
 }

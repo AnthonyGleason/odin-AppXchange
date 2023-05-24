@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import App from './components/App';
+import Login from './components/Login';
 import Footer from './components/static/Footer';
 import Nav from './components/static/Nav';
 import Orders from './components/store/Orders';
@@ -16,6 +17,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/user/orders' element={<Orders />} />
       </Routes>

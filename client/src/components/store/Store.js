@@ -6,6 +6,8 @@ import fnaf1 from '../../assets/appimgs/fnaf1.jpg';
 import flstudio1 from '../../assets/appimgs/flstudio1.jpg';
 import terraria1 from '../../assets/appimgs/terraria1.jpg';
 import '../../styles/Store.css';
+import Aos from 'aos';
+import "aos/dist/aos.css";
 
 export default function Store() {
   const [storeItems, setStoreItems] = useState([]);
@@ -21,6 +23,10 @@ export default function Store() {
         setStoreItems(data.apps);
       });
   };
+
+  useEffect(()=>{
+    Aos.init({duration: 2000});
+  },[]);
 
   const getPurchases = async function() {
     try {
@@ -43,10 +49,32 @@ export default function Store() {
   const setupCheckout = function(itemPrice,itemID){
     //set app id of item in cart
     setCartAppID(itemID);
-    //show form
-    document.querySelector('.checkout').classList.remove('hidden');
     //set cart with price
     setCartTotal(itemPrice);
+    if (localStorage.getItem('jwt')){
+      const checkoutElement = document.querySelector('.checkout');
+      if (checkoutElement.classList.contains('hidden')){
+        //hide form
+        checkoutElement.classList.remove('hidden');
+        checkoutElement.classList.add('flex');
+      }else{
+        //show form
+        checkoutElement.classList.add('hidden');
+        checkoutElement.classList.remove('flex');
+      }
+    }else{
+      //display popup telling the user they need to sign in to checkout
+      const popupElement = document.querySelector('.pop-up');
+      if (popupElement.classList.contains('hidden')){
+        //hide form
+        popupElement.classList.remove('hidden');
+        popupElement.classList.add('flex');
+      }else{
+        //show form
+        popupElement.classList.add('hidden');
+        popupElement.classList.remove('flex');
+      }
+    }
   };
 
   const handleCheckout = async function(){
@@ -68,11 +96,25 @@ export default function Store() {
 
   return (
     <div className='store'>
-      <p className='greeting'>
+      {/* <p className='greeting'>
         Welcome to AppZone!
-      </p>
+      </p> */}
+      <div className='pop-up hidden'>
+        <img src={xIMG} onClick={()=>{
+          document.querySelector('.pop-up').classList.add('hidden');
+          document.querySelector('.pop-up').classList.remove('flex');
+          }} 
+        />
+        <p>You must be signed in to checkout</p>
+        <button className='form-submit' onClick={()=>{window.location.href='/login'}}>Login</button>
+        <button className='form-submit' onClick={()=>{window.location.href='/register'}}>Register</button>
+      </div>
       <form className='checkout hidden'>
-        <img src={xIMG} alt='an x, leave checkout' onClick={()=>{document.querySelector('.checkout').classList.add('hidden')}} />
+        <img src={xIMG} onClick={()=>{
+          document.querySelector('.checkout').classList.add('hidden');
+          document.querySelector('.checkout').classList.remove('flex');
+          }} 
+        />
         <div>
           <label>First Name:</label>
           <input />
@@ -145,22 +187,27 @@ export default function Store() {
               )
             }else{
               return(
-                <p onClick={()=>setupCheckout(item.price,appID)}>${item.price / 100}</p>
+                <p>${item.price / 100}</p>
               )
             }
           }
           return (
             <div
+              onClick={()=>setupCheckout(item.price,item._id)}
               key={index}
               className='store-item'
               style={{ backgroundImage: backgroundIMG }}
+              data-aos="fade-in"
+              data-aos-anchor-placement="top-bottom"
             >
-              <p>{item.name}</p>
-              <p>{item.publisher}</p>
-              <p>{item.category}</p>
-              {
-                getPrice(item._id)
-              }
+              <div className='item-info'>
+                <p>{item.name}</p>
+                <p>{item.publisher}</p>
+                <p>{item.category}</p>
+                {
+                  getPrice(item._id)
+                }
+              </div>
             </div>
           );
         })}

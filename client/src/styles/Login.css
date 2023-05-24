@@ -1,0 +1,25 @@
+.login,
+.register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  gap: 20px;
+  font-size: 30px;
+  margin: 10px;
+  padding: 20px;
+}
+
+.login div,
+.register div{
+  display: flex;
+  min-width: 400px;
+  margin: 5px;
+  padding: 5px;
+  gap: 15px;
+  justify-content: space-between;
+}
+

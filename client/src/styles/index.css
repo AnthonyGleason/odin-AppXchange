@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+html{
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #161617;
 }
 
 code {
@@ -38,4 +41,44 @@ code {
 a{
   color: white;
   text-decoration: none;
+}
+.flex{
+  display: flex;
+}
+.yellow{
+  color: rgb(255, 239, 150);
+}
+.pop-up {
+  position: fixed;
+  background-color: #161617;
+  max-width: 300px;
+  color: white;
+  border-radius: 18px;
+  border: 2px solid rgb(255, 239, 150);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  z-index: 50;
+  padding: 30px;
+  gap: 20px;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+.pop-up img{
+  align-self: flex-start;
+}
+.form-submit{
+  border-radius: 18px;
+  color: white;
+  width: 80%;
+  max-width: 100px;
+  height: 50px;
+  background-color: #161617;
+  font-size:20px;
+  margin: 10px;
+  justify-self: center;
+  align-self: center;
+  font-weight: 300;
 }
