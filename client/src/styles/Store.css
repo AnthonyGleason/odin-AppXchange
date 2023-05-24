@@ -1,0 +1,37 @@
+.store{
+  display: flex;
+  flex-direction: column;
+}
+.greeting{
+  align-self: center;
+  max-width: 500px;
+  margin: 15px;
+}
+.store-item-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: #161617CC;
+  padding: 10px;
+}
+.store-item{
+  background-position: center;
+  box-shadow: 0 4px 8px #1d1d1f;
+  background-repeat: no-repeat;
+  height: 50vh;
+  margin: 5px;
+  border-radius: 18px;
+}
+.checkout{
+  position:fixed;
+  bottom: 0;
+  max-height: 300px;
+  height: 50vh;
+  background-color: gainsboro;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

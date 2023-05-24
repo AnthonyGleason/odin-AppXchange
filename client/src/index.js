@@ -4,6 +4,7 @@ import './styles/index.css';
 import App from './components/App';
 import Footer from './components/static/Footer';
 import Nav from './components/static/Nav';
+import Orders from './components/store/Orders';
 import Register from './components/Register';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
@@ -16,6 +17,7 @@ root.render(
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/user/orders' element={<Orders />} />
       </Routes>
     </BrowserRouter>
     <Footer />

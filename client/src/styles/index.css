@@ -15,3 +15,27 @@ code {
 .hidden{
   display: none;
 }
+/* scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1d1d1f;
+}
+::-webkit-scrollbar-thumb {
+  background: #464646;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  color: white;
+  text-decoration: none;
+}

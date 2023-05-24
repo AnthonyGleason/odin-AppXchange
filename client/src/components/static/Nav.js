@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import searchIMG from '../../assets/search.svg';
 import menuIMG from '../../assets/menu-outline.svg';
+import '../../styles/Nav.css';
 
 export default function Nav(){
   const [searchInput,setSearchInput] = useState('');
@@ -29,7 +30,7 @@ export default function Nav(){
   let getNavMenu=function(){
     if (!localStorage.getItem('jwt')){
       return(
-        <div>
+        <div className='nav-menu'>
           <a href='/register'>Register</a>
           <div 
             onClick={()=>{
@@ -61,8 +62,8 @@ export default function Nav(){
       )
     }else{
       return(
-        <div>
-          <p>My Orders</p>
+        <div className='nav-menu'>
+          <a href='/user/orders'>My Orders</a>
           <p onClick={()=>{
             localStorage.removeItem('jwt');
             window.location.href='/';
@@ -74,12 +75,11 @@ export default function Nav(){
   }
   return(
     <div className='nav'>
-      <h3>AppZone</h3>
-      {/* <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
-        <img alt='search-logo' src={searchIMG} />
-        <input value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} />
-        <button>Search</button>
-      </form> */}
+      <a href='/'>AppZone</a>
+      <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
+        <img alt='search-logo' src={searchIMG} onClick={() => { document.querySelector('.search').submit(); }} />
+        <input value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }} />
+      </form>
       {
         getNavMenu()
       }
