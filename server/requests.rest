@@ -62,10 +62,10 @@ POST http://localhost:5000/api/app/create
 Content-Type: application/json
 
 {
-  "name": "SkyView",
-  "desc": "SkyView brings stargazing to everyone. Simply point your iPhone, iPad, or iPod at the sky to identify stars, constellations, planets, satellites, and more!",
-  "publisher": "Terminal Eleven LLC",
-  "category": "Education",
+  "name": "Test",
+  "desc": "test",
+  "publisher": "test",
+  "category": "test",
   "price": 299,
-  "imgNames": ["sv1"]
+  "imgNames": ["t1"]
 }

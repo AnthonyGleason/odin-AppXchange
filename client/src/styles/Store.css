@@ -51,7 +51,6 @@
   height: max-content;
   padding: 20px;
   background-color: rgba(0,0,0,0.85);
-  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,12 +59,24 @@
   align-items: center;
   z-index: 2;
   font-size: 20px;
-  gap: 8px;
+  gap: 12px;
+  width: max-content;
+  align-self: center;
+  border-radius: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  font-size: 18px;
+  box-shadow: 0 4px 8px #1d1d1f;
 }
 .checkout div{
   display: flex;
   gap: 10px;
+  width: 100%;
+  justify-content: space-between;
 }
 .checkout img{
-  margin-right: 20%;
+  align-self: flex-start;
+  width: 25px;
 }
