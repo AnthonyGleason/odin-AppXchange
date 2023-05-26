@@ -5,6 +5,11 @@ import btd61 from '../../assets/appimgs/btd61.jpg';
 import fnaf1 from '../../assets/appimgs/fnaf1.jpg';
 import flstudio1 from '../../assets/appimgs/flstudio1.jpg';
 import terraria1 from '../../assets/appimgs/terraria1.jpg';
+import dj1 from '../../assets/appimgs/dj1.jpg';
+import wmw1 from '../../assets/appimgs/wmw1.jpg';
+import af1 from '../../assets/appimgs/af1.png';
+import sv1 from '../../assets/appimgs/sv1.jpg';
+
 import '../../styles/Store.css';
 import Aos from 'aos';
 import "aos/dist/aos.css";
@@ -23,7 +28,13 @@ export default function Store() {
         setStoreItems(data.apps);
       });
   };
-
+  const ownsApp = function(appID){
+    let appFound=false;
+    purchases.forEach((order)=>{
+      if (order.appID===appID)appFound = true;
+    });
+    return appFound;
+  }
   useEffect(()=>{
     Aos.init({duration: 2000});
   },[]);
@@ -51,7 +62,9 @@ export default function Store() {
     setCartAppID(itemID);
     //set cart with price
     setCartTotal(itemPrice);
-    if (localStorage.getItem('jwt')){
+    if(ownsApp(itemID)){
+      //item already purchased
+    }else if (localStorage.getItem('jwt')){
       const checkoutElement = document.querySelector('.checkout');
       if (checkoutElement.classList.contains('hidden')){
         //hide form
@@ -105,7 +118,7 @@ export default function Store() {
           document.querySelector('.pop-up').classList.remove('flex');
           }} 
         />
-        <p>You must be signed in to checkout</p>
+        <p>You must be signed in to purchase an app.</p>
         <button className='form-submit' onClick={()=>{window.location.href='/login'}}>Login</button>
         <button className='form-submit' onClick={()=>{window.location.href='/register'}}>Register</button>
       </div>
@@ -152,7 +165,7 @@ export default function Store() {
           <input type='date'/>
         </div>
         <p>By placing this order you will be charged ${cartTotal/100}</p>
-        <button onClick={()=>{handleCheckout()}} type='button'>Place Order</button>
+        <button className='form-submit' onClick={()=>{handleCheckout()}} type='button'>Place Order</button>
       </form>
       <div className='store-item-container'>
         {storeItems.map((item, index) => {
@@ -173,14 +186,24 @@ export default function Store() {
             case 'terraria1':
               backgroundIMG = `url(${terraria1})`;
               break;
+            case 'dj1':
+              backgroundIMG = `url(${dj1})`;
+              break;
+            case 'wmw1':
+              backgroundIMG = `url(${wmw1})`;
+              break;
+            case 'af1':
+              backgroundIMG = `url(${af1})`;
+              break;
+            case 'sv1':
+              backgroundIMG = `url(${sv1})`;
+              break;
             default:
               break;
           }
+          
           const getPrice = function(appID){
-            let appFound=false;
-            purchases.forEach((order)=>{
-              if (order.appID===appID)appFound = true;
-            });
+            let appFound = ownsApp(appID);
             if (appFound){
               return(
                 <p>Purchased</p>

@@ -11,14 +11,14 @@ export default function Nav(){
       return(
         <div className='nav-menu'>
           <a href='/login'>Login</a>
-          <a className='yellow' href='/register'>Register</a>
+          <a href='/register'>Register</a>
         </div>
       )
     }else{
       return(
         <div className='nav-menu'>
           <a href='/user/orders'>My Orders</a>
-          <p className='yellow' onClick={()=>{
+          <p onClick={()=>{
             localStorage.removeItem('jwt');
             window.location.href='/';
           }}>Log-Out</p>
@@ -29,7 +29,7 @@ export default function Nav(){
   }
   return(
     <div className='nav'>
-      <a className='nav-logo' href='/'>AppZone <span className='logo-alt'>an appstore demo created by Anthony Infortunio.</span></a>
+      <a className='nav-logo' href='/'>AppZone <span className='logo-alt'>an appstore demo by Anthony Infortunio</span></a>
       {/* <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
         <img className='search-logo' src={searchIMG} onClick={() => { document.querySelector('.search').submit(); }} />
         <input value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }} />

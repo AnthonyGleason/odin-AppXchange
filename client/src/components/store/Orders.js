@@ -1,4 +1,5 @@
 import React, {useEffect,useState} from 'react';
+import '../../styles/Orders.css';
 
 export default function Orders(){
   const [purchases,setPurchases] = useState([]);
@@ -25,16 +26,19 @@ export default function Orders(){
   }
   return(
     <div className='orders'>
+      <p className='orders-title'>My Orders</p>
       {
-        purchases.map((order,index)=>{
-          return(
-            <div key={index}>
-              <p>{order.orderDate}</p>
-              <p>{order.user}</p>
-              <p>{order.status}</p>
-              <p>{order.appID}</p>
+        purchases.map((order, index) => {
+          const orderDate = new Date(order.orderDate);
+          const formattedDate = orderDate.toLocaleDateString('en-US');
+
+          return (
+            <div className='order' key={index}>
+              <p>Order Date: {formattedDate}</p>
+              <p>Order Status: {order.status}</p>
+              <p>App ID: {order.appID}</p>
             </div>
-          )
+          );
         })
       }
     </div>

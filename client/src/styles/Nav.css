@@ -5,23 +5,25 @@
   height: max-content;
   color: white;
   text-decoration: none;
-  padding: 15px;
-  top: 0;
+  padding: 30px;
+  top: 0px;
   position: sticky;
   z-index: 2;
-  background-color: rgba(0,0,0,0.85);
-  border-bottom: 1px solid rgb(255, 255, 255);
+  background-color: #161617;
+  text-align: center;
+  margin: 10px;
+  border-radius: 18px;
 }
 .nav-logo{
-  font-weight: 600;
+  font-weight: 500;
   font-size: 40px
 }
 .logo-alt{
   color: rgb(160, 160, 160);
   font-style: italic;
   font-size: 30px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
   position: absolute;
 }
 .nav-menu{
@@ -29,7 +31,7 @@
   align-items: center;
   gap: 20px;
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .search{
   display: flex;

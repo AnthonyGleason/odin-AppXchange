@@ -5,8 +5,8 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  color: white;
-  font-weight: 600;
+  color: black;
+  font-weight: 500;
   gap: 20px;
   font-size: 30px;
   margin: 10px;
@@ -22,4 +22,3 @@
   gap: 15px;
   justify-content: space-between;
 }
-

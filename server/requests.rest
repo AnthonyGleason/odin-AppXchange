@@ -62,10 +62,10 @@ POST http://localhost:5000/api/app/create
 Content-Type: application/json
 
 {
-  "name": "Grand Theft Auto: San Andreas",
-  "desc": "Five years ago, Carl Johnson escaped from the pressures of life in Los Santos, San Andreas, a city tearing itself apart with gang trouble, drugs and corruption. Where filmstars and millionaires do their best to avoid the dealers and gangbangers. Now, it’s the early 90’s. Carl’s got to go home. His mother has been murdered, his family has fallen apart and his childhood friends are all heading towards disaster.",
-  "publisher": "Rockstar Games",
-  "category": "Games",
-  "price": 799,
-  "imgNames": ["gtasa1","gtasa2"]
+  "name": "SkyView",
+  "desc": "SkyView brings stargazing to everyone. Simply point your iPhone, iPad, or iPod at the sky to identify stars, constellations, planets, satellites, and more!",
+  "publisher": "Terminal Eleven LLC",
+  "category": "Education",
+  "price": 299,
+  "imgNames": ["sv1"]
 }
