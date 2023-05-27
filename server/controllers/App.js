@@ -15,7 +15,7 @@ const getAppByDocID = async function(docID){
   return await AppModel.findById(docID);
 };
 
-const findAppByName = async function(searchStr){
+const findAppsByName = async function(searchStr){
   return await AppModel.find({name: searchStr});
 };
 
@@ -34,7 +34,7 @@ const deleteAppByDocID = async function(docID){
 module.exports = {
   createApp,
   getAppByDocID,
-  findAppByName,
+  findAppsByName,
   getAllApps,
   updateAppByDocID,
   deleteAppByDocID

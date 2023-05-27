@@ -164,7 +164,7 @@ export default function Store() {
           <label>Exp Date</label>
           <input type='date'/>
         </div>
-        <p className='yellow'>By placing this order you will be charged ${cartTotal/100}</p>
+        <p className='yellow'>By placing this order you will (not) be charged ${cartTotal/100}</p>
         <button className='form-submit' onClick={()=>{handleCheckout()}} type='button'>Place Order</button>
       </form>
       <div className='store-item-container'>

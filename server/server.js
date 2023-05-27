@@ -18,6 +18,6 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_URL).then(()=>{
   console.log('Successfully connected to the mongodb database.')
 });
-
+//use the api router for the /api route
 const apiRouter = require('./routers/api');
 app.use('/api',apiRouter);
