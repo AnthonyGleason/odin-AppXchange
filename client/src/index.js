@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
-import App from './components/App';
-import Login from './components/Login';
-import Footer from './components/static/Footer';
-import Nav from './components/static/Nav';
-import Orders from './components/store/Orders';
-import Register from './components/Register';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Store from './Store/Store';
+import Login from './Account/Login';
+import Footer from './App/Footer';
+import Nav from './App/Nav';
+import Orders from './Account/Orders';
+import Register from './Account/Register';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,9 +16,9 @@ root.render(
     <Nav />
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/' element={<Store />} />
+        <Route path='/user/login' element={<Login />} />
+        <Route path='/user/register' element={<Register />} />
         <Route path='/user/orders' element={<Orders />} />
       </Routes>
     </BrowserRouter>

@@ -26,22 +26,3 @@
   margin-left: 15px;
   position: absolute;
 }
-.nav-menu{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 25px;
-  font-weight: 500;
-}
-.search{
-  display: flex;
-  gap: 10px;
-}
-.search input{
-  width: 40vw;
-  max-width: 600px;
-  border-radius: 18px;
-}
-.search-logo{
-  width: 30px;;
-}

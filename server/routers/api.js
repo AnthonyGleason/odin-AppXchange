@@ -112,6 +112,10 @@ router.post('/user/login', async (req, res, next) => {
 
   //authenticated routes//
 
+router.get('/user/verify',authenticateToken,async(req,res,next)=>{
+  res.status(200).json({isValid: true})
+});
+
 //update user account settings
 router.put('/user/settings',authenticateToken, async (req,res,next)=>{
   const id = req.payload._id;
@@ -217,7 +221,7 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
         } else {
           console.log(charge);
           order = await createOrder(userID,appID);
-          res.status(200).json({order: order._id});
+          res.status(200).json({order: order._id});q
           //update order status to succeeded from processing
           order.status = 'Success';
           await updateOrderByDocID(order._id,order);

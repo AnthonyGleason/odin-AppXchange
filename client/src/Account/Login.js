@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import '../styles/Login.css'
+import './Login.css'
 export default function Login(){
   const [emailInput,setEmailInput] = useState('');
   const [passInput,setPassInput] = useState('');
-
   let handleLogin = async function(){
     await fetch('http://localhost:5000/api/user/login',{
       method: 'POST',
@@ -20,12 +19,10 @@ export default function Login(){
       if (data.token){
         localStorage.setItem('jwt',data.token);
         console.log('logged in user');
-        window.location.href='.';
+        window.location.href='/';
       }
     })
   };
-
-  
   return(
     <form className='login' method='POST' action='http://localhost:5000/api/user/login'> 
       <p>Login</p>
