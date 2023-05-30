@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import xIMG from '../assets/widgets/x.svg';
+import React,{useState,useEffect} from 'react';
+import xButton from '../assets/widgets/x.svg';
+import './Store.css';
+import Aos from 'aos';
+import "aos/dist/aos.css";
+
+//app image imports
 import minecraft1 from '../assets/appimgs/minecraft1.jpg';
 import btd61 from '../assets/appimgs/btd61.jpg';
 import fnaf1 from '../assets/appimgs/fnaf1.jpg';
@@ -10,123 +15,131 @@ import wmw1 from '../assets/appimgs/wmw1.jpg';
 import af1 from '../assets/appimgs/af1.png';
 import sv1 from '../assets/appimgs/sv1.jpg';
 
-import './Store.css';
-import Aos from 'aos';
-import "aos/dist/aos.css";
-
-export default function Store() {
-  const [storeItems, setStoreItems] = useState([]);
-  const [purchases, setPurchases] = useState([]);
-  const [cartTotal,setCartTotal] = useState(0);
-  const [cartAppID,setCartAppID] = useState('');
-  const getStoreItems = async function () {
-    await fetch('http://localhost:5000/api/app', {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setStoreItems(data.apps);
-      });
-  };
-  const ownsApp = function(appID){
-    let appFound=false;
-    purchases.forEach((order)=>{
-      if (order.appID===appID)appFound = true;
-    });
-    return appFound;
+const toggleElementVisibility = function(classStr){
+  const element = document.querySelector(`.${classStr}`);
+  if (!element) return 0;
+  if(element.classList.contains('flex')){
+    element.classList.add('hidden');
+    element.classList.remove('flex');
+  }else{
+    element.classList.remove('hidden');
+    element.classList.add('flex');
   }
+}
+
+const handleCheckout = async function(appID){
+  const response = await fetch(`http://localhost:5000/api/apps/${appID}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+  });
+  if (response.ok){
+    window.location.href='/'
+  }
+};
+
+const ownsApp = function(appID,purchases){
+  let appFound=false;
+  if (!purchases) return false;
+  purchases.forEach((order)=>{
+    if (order.appID===appID)appFound = true;
+  });
+  return appFound;
+}
+
+const setupCheckout = function(itemPrice,itemID,setCart){
+  setCart({
+    total: itemPrice,
+    itemID: itemID,
+  });
+  if(ownsApp(itemID)){
+    //item already purchased do nothing
+  }else if (localStorage.getItem('jwt')){
+    toggleElementVisibility('checkout');
+  }else{
+    toggleElementVisibility('pop-up');
+  }
+};
+const getBackgroundImg = function(imgName){
+  switch (imgName) {
+    case 'minecraft1':
+      return(`url(${minecraft1})`);
+    case 'btd61':
+      return(`url(${btd61})`);
+    case 'fnaf1':
+      return(`url(${fnaf1})`);
+    case 'flstudio1':
+      return(`url(${flstudio1})`);
+    case 'terraria1':
+      return(`url(${terraria1})`);
+    case 'dj1':
+      return(`url(${dj1})`);
+    case 'wmw1':
+      return(`url(${wmw1})`);
+    case 'af1':
+      return(`url(${af1})`);
+    case 'sv1':
+      return(`url(${sv1})`);
+    default:
+      return(`url('')`);
+  }
+}
+const getAndUpdateStoreItems = async function (setStoreItems) {
+  await fetch('http://localhost:5000/api/app', {
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setStoreItems(data.apps);
+  });
+};
+const getAndUpdatePurchases = async function(setPurchases) {
+  try {
+    const response = await fetch(`http://localhost:5000/api/user/purchases`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch purchases');
+    }
+    const data = await response.json();
+    setPurchases(data.purchases);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+export default function Store(){
+  const [cart,setCart] = useState({
+    total: 0,
+    itemID: '',
+  })
+  const [storeItems,setStoreItems] = useState([]);
+  const [purchases, setPurchases] = useState([]);
   useEffect(()=>{
     Aos.init({duration: 2000});
+    getAndUpdateStoreItems(setStoreItems);
+    if (localStorage.getItem('jwt')) getAndUpdatePurchases(setPurchases);
   },[]);
-
-  const getPurchases = async function() {
-    try {
-      const response = await fetch(`http://localhost:5000/api/user/purchases`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch purchases');
-      }
-      const data = await response.json();
-      setPurchases(data.purchases);
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  };
-
-  const setupCheckout = function(itemPrice,itemID){
-    //set app id of item in cart
-    setCartAppID(itemID);
-    //set cart with price
-    setCartTotal(itemPrice);
-    if(ownsApp(itemID)){
-      //item already purchased
-    }else if (localStorage.getItem('jwt')){
-      const checkoutElement = document.querySelector('.checkout');
-      if (checkoutElement.classList.contains('hidden')){
-        //hide form
-        checkoutElement.classList.remove('hidden');
-        checkoutElement.classList.add('flex');
-      }else{
-        //show form
-        checkoutElement.classList.add('hidden');
-        checkoutElement.classList.remove('flex');
-      }
-    }else{
-      //display popup telling the user they need to sign in to checkout
-      const popupElement = document.querySelector('.pop-up');
-      if (popupElement.classList.contains('hidden')){
-        //hide form
-        popupElement.classList.remove('hidden');
-        popupElement.classList.add('flex');
-      }else{
-        //show form
-        popupElement.classList.add('hidden');
-        popupElement.classList.remove('flex');
-      }
-    }
-  };
-
-  const handleCheckout = async function(){
-    const response = await fetch(`http://localhost:5000/api/apps/${cartAppID}`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-    if (response.ok){
-      window.location.href='/'
-    }
-  };
-
-  useEffect(() => {
-    getStoreItems();
-    if (localStorage.getItem('jwt')) getPurchases();
-  }, []);
-
-  return (
+  return(
     <div className='store'>
-      {/* <p className='greeting'>
-        Welcome to AppZone!
-      </p> */}
       <div className='pop-up hidden'>
-        <img src={xIMG} onClick={()=>{
-          document.querySelector('.pop-up').classList.add('hidden');
-          document.querySelector('.pop-up').classList.remove('flex');
-          }} 
+        <img
+        src={xButton}
+        onClick={()=>{toggleElementVisibility('pop-up')}} 
+        alt='cross x button'
         />
         <p>You must be signed in to purchase an app.</p>
         <button className='form-submit' onClick={()=>{window.location.href='/login'}}>Login</button>
         <button className='form-submit' onClick={()=>{window.location.href='/register'}}>Register</button>
       </div>
       <form className='checkout hidden'>
-        <img src={xIMG} onClick={()=>{
-          document.querySelector('.checkout').classList.add('hidden');
-          document.querySelector('.checkout').classList.remove('flex');
-          }} 
+        <img 
+          src={xButton}
+          onClick={()=>{toggleElementVisibility('checkout')}} 
+          alt='cross x button'
         />
         <div>
           <label>First Name:</label>
@@ -164,46 +177,14 @@ export default function Store() {
           <label>Exp Date</label>
           <input type='date'/>
         </div>
-        <p className='yellow'>By placing this order you will be charged ${cartTotal/100}</p>
-        <button className='form-submit' onClick={()=>{handleCheckout()}} type='button'>Place Order</button>
+        <p className='yellow'>By placing this order you will be charged ${cart.total/100}</p>
+        <button className='form-submit' onClick={()=>{handleCheckout(cart.itemID)}} type='button'>Place Order</button>
       </form>
       <div className='store-item-container'>
         {storeItems.map((item, index) => {
-          let backgroundIMG = '';
-          switch (item.imgNames[0]) {
-            case 'minecraft1':
-              backgroundIMG = `url(${minecraft1})`;
-              break;
-            case 'btd61':
-              backgroundIMG = `url(${btd61})`;
-              break;
-            case 'fnaf1':
-              backgroundIMG = `url(${fnaf1})`;
-              break;
-            case 'flstudio1':
-              backgroundIMG = `url(${flstudio1})`;
-              break;
-            case 'terraria1':
-              backgroundIMG = `url(${terraria1})`;
-              break;
-            case 'dj1':
-              backgroundIMG = `url(${dj1})`;
-              break;
-            case 'wmw1':
-              backgroundIMG = `url(${wmw1})`;
-              break;
-            case 'af1':
-              backgroundIMG = `url(${af1})`;
-              break;
-            case 'sv1':
-              backgroundIMG = `url(${sv1})`;
-              break;
-            default:
-              break;
-          }
-          
+          let backgroundIMG = getBackgroundImg(item.imgNames[0]);
           const getPrice = function(appID){
-            let appFound = ownsApp(appID);
+            let appFound = ownsApp(appID,purchases);
             if (appFound){
               return(
                 <p>Purchased</p>
@@ -216,7 +197,7 @@ export default function Store() {
           }
           return (
             <div
-              onClick={()=>setupCheckout(item.price,item._id)}
+              onClick={()=>setupCheckout(item.price,item._id,setCart)}
               key={index}
               className='store-item'
               style={{ backgroundImage: backgroundIMG }}
@@ -236,5 +217,5 @@ export default function Store() {
         })}
       </div>
     </div>
-  );
+  )
 }
