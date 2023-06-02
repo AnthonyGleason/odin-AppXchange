@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
+//import components
 import Store from './Store/Store';
 import Login from './Account/Login';
 import Footer from './App/Footer';
 import Nav from './App/Nav';
 import Orders from './Account/Orders';
 import Register from './Account/Register';
+//import css
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

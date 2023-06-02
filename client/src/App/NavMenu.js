@@ -1,32 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './NavMenu.css';
 
-export default function NavMenu() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    checkLoginStatus(setIsLoggedIn);
-  }, []);
-  if (isLoggedIn) {
-    return (
-      <div className='nav-menu'>
-        <a href='/user/orders'>My Orders</a>
-        <p onClick={()=>{handleLogOut()}}>Log-Out</p>
-      </div>
-    );
-  } else {
-    // User is not logged in
-    return (
-      <div className='nav-menu'>
-        <a href='/user/login'>Login</a>
-        <a href='/user/register'>Register</a>
-      </div>
-    );
-  }
-};
 const handleLogOut = function(){
   localStorage.removeItem('jwt');
   window.location.href = '/';
 };
+
 const checkLoginStatus = async function(loginStateSetter){
   const token = localStorage.getItem('jwt');
   let isValid = false;
@@ -48,4 +27,27 @@ const checkLoginStatus = async function(loginStateSetter){
     });
   }
   loginStateSetter(isValid);
+};
+
+export default function NavMenu() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    checkLoginStatus(setIsLoggedIn);
+  }, []);
+  if (isLoggedIn) {
+    return (
+      <ul className='nav-menu'>
+        <li><a href='/user/orders'>My Orders</a></li>
+        <li><p onClick={()=>{handleLogOut()}}>Log-Out</p></li>
+      </ul>
+    );
+  } else {
+    // User is not logged in
+    return (
+      <ul className='nav-menu'>
+        <li><a href='/user/login'>Login</a></li>
+        <li><a href='/user/register'>Register</a></li>
+      </ul>
+    );
+  }
 };

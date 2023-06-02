@@ -228,7 +228,6 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
         }
       }
     );
-    res.status(200).json({orderID: order});
   }catch(e){
     console.log(`Error ${e} when placing an order for user ${userID} for app ${appID}`);
     res.status(500).json({'error': 'An error occured during checkout you have not been charged'});
