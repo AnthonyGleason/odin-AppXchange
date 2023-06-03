@@ -83,3 +83,7 @@ a{
   align-self: center;
   font-weight: 300;
 }
+#root{
+  display: flex;
+  flex-direction: column;
+}

@@ -5,24 +5,35 @@
   height: max-content;
   color: white;
   text-decoration: none;
-  padding: 30px;
+  padding: 20px;
   top: 0px;
   position: sticky;
   z-index: 2;
   background-color: #161617;
   text-align: center;
-  margin: 10px;
   border-radius: 18px;
+  justify-self: center;
+  
+}
+@media (max-width: 700px) {
+  .nav {
+    margin: 0px;
+  }
+}
+@media(min-width: 701px){
+  .nav{
+    margin-left: 1%;
+    margin-right: 1%;
+  }
 }
 .nav-logo{
   font-weight: 500;
-  font-size: 40px
+  font-size: 3vh;
 }
 .logo-alt{
   color: rgb(160, 160, 160);
   font-style: italic;
-  font-size: 30px;
+  font-size: 2vh;
   margin-top: 15px;
   margin-left: 15px;
-  position: absolute;
 }

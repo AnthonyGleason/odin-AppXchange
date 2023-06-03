@@ -2,17 +2,21 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 25px;
+  font-size: 2vh;
   font-weight: 500;
+  list-style: none;
 }
 .search{
   display: flex;
+  flex-grow: 1;
   gap: 10px;
+  justify-content: center;
+
 }
 .search input{
-  width: 40vw;
-  max-width: 600px;
   border-radius: 18px;
+  width: 60%;
+  min-width: 50px;
 }
 .search-logo{
   width: 30px;;

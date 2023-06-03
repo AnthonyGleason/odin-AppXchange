@@ -9,13 +9,14 @@
   color: white;
 }
 .store-item-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5vh;
   padding: 10px;
 }
+
 .store-item{
   background-position: center;
   background-repeat: no-repeat;
@@ -24,10 +25,12 @@
   margin: 5px;
   color: white;
   display: flex;
+  max-width: 1200px;
   padding-left: 7%;
   cursor: pointer;
   border-radius: 18px;
   box-shadow: 0 4px 8px #1d1d1f;
+  width: 100%;
 }
 .item-info{
   background-color: rgba(0,0,0,0.85);

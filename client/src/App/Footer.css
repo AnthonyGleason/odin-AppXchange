@@ -15,3 +15,8 @@
 .contact img{
   width: 50px;
 }
+.contact{
+  list-style: none;
+  display: flex;
+  gap: 5px;
+}
