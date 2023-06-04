@@ -85,5 +85,9 @@ a{
 }
 #root{
   display: flex;
+  height: max-content;
   flex-direction: column;
+}
+input{
+  padding-left: 5px;
 }

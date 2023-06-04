@@ -15,8 +15,11 @@ const getAppByDocID = async function(docID){
   return await AppModel.findById(docID);
 };
 
-const findAppsByName = async function(searchStr){
-  return await AppModel.find({name: searchStr});
+const findAppsByName = async function(searchStr) {
+  //case insensitive matching for the users inputted search
+  const searchTerm = new RegExp(searchStr, 'i');
+  //return matches
+  return await AppModel.find({ name: searchTerm });
 };
 
 const getAllApps = async function(){

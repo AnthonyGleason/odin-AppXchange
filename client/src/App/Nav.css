@@ -1,7 +1,7 @@
 .nav{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   height: max-content;
   color: white;
   text-decoration: none;
@@ -12,8 +12,7 @@
   background-color: #161617;
   text-align: center;
   border-radius: 18px;
-  justify-self: center;
-  
+  gap: 5px;
 }
 @media (max-width: 700px) {
   .nav {
@@ -29,6 +28,7 @@
 .nav-logo{
   font-weight: 500;
   font-size: 3vh;
+  cursor: pointer;
 }
 .logo-alt{
   color: rgb(160, 160, 160);

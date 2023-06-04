@@ -23,6 +23,8 @@ const checkLoginStatus = async function(loginStateSetter){
         isValid = true;
       } else {
         isValid = false;
+        // token is expired
+        localStorage.removeItem('jwt');
       }
     });
   }
@@ -42,7 +44,6 @@ export default function NavMenu() {
       </ul>
     );
   } else {
-    // User is not logged in
     return (
       <ul className='nav-menu'>
         <li><a href='/user/login'>Login</a></li>

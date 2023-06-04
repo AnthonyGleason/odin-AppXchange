@@ -1,6 +1,9 @@
 .store{
   display: flex;
   flex-direction: column;
+  /* hiding the overflow of x because it conflicts with the
+  animate on scroll (aos) library i am using to animate store items */
+  overflow-x: hidden;
 }
 .greeting{
   align-self: center;
@@ -47,39 +50,4 @@
 }
 .item-info *{
   padding: 2px;
-}
-.checkout{
-  position:fixed;
-  bottom: 0;
-  height: max-content;
-  padding: 20px;
-  background-color: rgba(0,0,0,0.85);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  font-size: 20px;
-  gap: 12px;
-  width: max-content;
-  align-self: center;
-  border-radius: 18px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 50;
-  font-size: 18px;
-  box-shadow: 0 4px 8px #1d1d1f;
-}
-.checkout div{
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  justify-content: space-between;
-}
-.checkout img{
-  align-self: flex-start;
-  width: 25px;
 }

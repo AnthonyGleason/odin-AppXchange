@@ -11,6 +11,8 @@ export default function Store(){
   const [cart,setCart] = useState({
     total: 0,
     itemID: '',
+    itemName: '',
+    itemAuthor: '',
   })
   const [storeItems,setStoreItems] = useState([]);
   const [purchases, setPurchases] = useState([]);
