@@ -5,20 +5,24 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 //json web token will be used to authenticate users using sessions
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const authenticateToken = function(req,res,next){
-  const authHeader = req.headers['authorization'];
-  const token = authHeader.split(' ')[1];
-  if (token == null) res.status(401);
-  jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,payload)=>{
-    if (err) res.status(403);
-    req.payload = payload;
-    next();
-  });
-};
 //import controller functions
 const { getAllApps, findAppsByName, getAppByDocID, createApp } = require('../controllers/App');
 const { getOrdersByUserDocID, createOrder, updateOrderByDocID } = require('../controllers/Order');
 const { getUserByDocID, updateUserByDocID , getUserByEmail,createUser} = require('../controllers/User');
+const authenticateToken = function(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+    req.payload = payload;
+    next();
+  });
+};
 
     //unauthenticated routes//
 router.post('/app/create',async(req,res,next)=>{
@@ -145,15 +149,18 @@ router.put('/user/settings',authenticateToken, async (req,res,next)=>{
 
 //get purchases for a user account
 router.get('/user/purchases',authenticateToken,async (req,res,next)=>{
-  const id = req.payload._id;
-  try{
-    const purchases = await getOrdersByUserDocID(id);
-    res.status(200).json({purchases: purchases});
-  }catch(e){
-    console.log(`Error ${e} when getting purchases for user ${id}`);
+  if (!req.payload){
     res.status(500);
+  }else{
+    const id = req.payload._id;
+    try{
+      const purchases = await getOrdersByUserDocID(id);
+      res.status(200).json({purchases: purchases});
+    }catch(e){
+      console.log(`Error ${e} when getting purchases for user ${id}`);
+      res.status(500);
+    }
   }
-  
 });
 
 //add to wishlist
