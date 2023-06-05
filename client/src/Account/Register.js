@@ -3,7 +3,7 @@ import './Register.css';
 export default function Register(){
   return(
     <div className='register'>
-      <form method='POST' action='http://localhost:5000/api/user/register'>
+      <form className='register-form' method='POST' action='http://localhost:5000/api/user/register'>
         <p>Register</p>
         <div>
           <label htmlFor='firstName'>First Name</label>
@@ -25,8 +25,12 @@ export default function Register(){
           <label htmlFor='passwordConfirm'>Password (Again)</label>
           <input type='password' name='passwordConfirm' id='passwordConfirm' />
         </div>
-        <button className='form-submit' type='submit'>Register</button>
+        <button className='form-submit' type='button' onClick={()=>handleRegister()}>Register</button>
       </form>
     </div>
-  )
-}
+  );
+};
+
+const handleRegister = async function(){
+  document.querySelector('.register-form').submit();
+};

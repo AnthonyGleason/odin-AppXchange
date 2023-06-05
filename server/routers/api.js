@@ -84,11 +84,12 @@ router.post('/user/register',async (req,res,next)=>{
       email,
       hashedPass,
     );
-    res.status(200).json({message: `Successfully created a user with docID ${user._id}`});
+    //CHANGE THE BELOW REDIRECT URL TO GHPAGES LINK
+    res.status(200).redirect('http://localhost:3000/');
   }catch(e){
     res.status(500);
     console.log(`Error ${e} when getting app data for an app with the id ${id}`);
-  }
+  };
 });
   
 // Login user
@@ -228,7 +229,8 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
         } else {
           console.log(charge);
           order = await createOrder(userID,appID);
-          res.status(200).json({order: order._id});q
+          //CHANGE URL TO GHPAGES LIVE URL LATER
+          res.status(200).redirect('http://localhost:3000/user/orders');
           //update order status to succeeded from processing
           order.status = 'Success';
           await updateOrderByDocID(order._id,order);

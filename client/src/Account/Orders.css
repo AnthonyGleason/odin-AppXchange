@@ -4,6 +4,7 @@
   align-items: center;
   padding: 20px;
   gap: 20px;
+  flex-grow: 1;
 }
 .order{
   background-color: rgb(6, 6, 7);

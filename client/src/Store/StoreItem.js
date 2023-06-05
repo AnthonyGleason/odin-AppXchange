@@ -20,7 +20,7 @@ export let StoreItem = function({item, purchases,setCart}){
   const backgroundIMG = getBackgroundImg(item.imgNames[0]);
     return (
       <article
-        onClick={()=>setupCheckout(item.price,item._id,setCart,item.name,item.publisher)}
+        onClick={()=>setupCheckout(item.price,item._id,setCart,item.name,item.publisher,purchases)}
         className='store-item'
         style={{ backgroundImage: backgroundIMG }}
         data-aos="fade-left"
@@ -62,8 +62,14 @@ const ownsApp = function(appID,purchases){
   return appFound;
 };
 
-const setupCheckout = function(itemPrice,itemID,setCart,itemName,itemAuthor){
-  //if item is purchases do not open checkout
+const setupCheckout = function(itemPrice,itemID,setCart,itemName,itemAuthor,orders){
+  //if item is purchased do not open checkout
+  let alreadyPurchased = false;
+  orders.forEach((order)=>{
+    if (itemID===order.appID) alreadyPurchased = true;
+  })
+  if (alreadyPurchased) return 0;
+  //handle checkout
   setCart({
     total: itemPrice,
     itemID: itemID,
