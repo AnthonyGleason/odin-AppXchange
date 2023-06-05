@@ -18,6 +18,8 @@ export default function Orders(){
         throw new Error('Failed to fetch purchases');
       }
       const data = await response.json();
+      //reverse the purchases array so newest orders are shown first
+      data.purchases.reverse();
       setPurchases(data.purchases);
     } catch (error) {
       console.error(error);

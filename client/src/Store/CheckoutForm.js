@@ -48,7 +48,7 @@ export default function CheckoutForm({cart}){
       </div>
       <p>{cart.itemName}</p>
       <p>{cart.itemAuthor}</p>
-      <p className='yellow'>By placing this order you will be charged ${cart.total/100}</p>
+      <p className='yellow'>By placing this order you will (not) be charged ${cart.total/100}</p>
       <button className='form-submit' onClick={()=>{handleCheckout(cart.itemID)}} type='button'>Place Order</button>
     </form>
   )

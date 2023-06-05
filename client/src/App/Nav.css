@@ -10,6 +10,7 @@
   position: sticky;
   z-index: 2;
   background-color: #161617;
+  box-shadow: 0 4px 8px #1d1d1f;
   text-align: center;
   border-radius: 18px;
   gap: 5px;
