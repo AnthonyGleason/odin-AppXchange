@@ -8,9 +8,15 @@ export default function Nav(){
   return(
     <nav className='nav'>
       <a className='nav-logo' href='/'>AppXchange</a>
-      <form method='GET' action={`http://localhost:5000/api/search/${searchInput}`} className='search'>
+      <form method='GET' className='search'>
         <img alt='magnifying glass' className='search-logo' src={searchIMG} onClick={() => { handleSearch(searchInput) }} />
-        <input value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }} />
+        <input onKeyDown={(e)=>{
+          if (e.key==='Enter'){
+            //prevent the default action of submitting the form when the enter key is pressed
+            e.preventDefault();
+            handleSearch(searchInput);
+          }
+          }} value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }} />
       </form>
       <NavMenu />
     </nav>
@@ -20,5 +26,5 @@ export default function Nav(){
 const handleSearch = function(inputFieldContent){
   //invalid search cases
   if (!inputFieldContent || inputFieldContent==='') return 0;
-  document.querySelector('.search').submit();
+  window.location.href=`/search/${inputFieldContent}`;
 }

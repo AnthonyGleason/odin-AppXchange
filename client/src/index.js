@@ -11,6 +11,7 @@ import Orders from './Account/Orders';
 import Register from './Account/Register';
 //import css
 import './index.css';
+import SearchResults from './Store/SearchResults';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
         <Route path='/user/login' element={<Login />} />
         <Route path='/user/register' element={<Register />} />
         <Route path='/user/orders' element={<Orders />} />
+        <Route path='/search/:query' element={<SearchResults />} />
       </Routes>
     </BrowserRouter>
     <Footer />
