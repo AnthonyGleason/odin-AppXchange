@@ -1,0 +1,22 @@
+.search-results{
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  row-gap: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  gap: 20px;
+}
+.search-result{
+  list-style: none;
+  color: white;
+  justify-self: center;
+  background-color: black;
+  border-radius: 18px;
+  max-width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px;
+}

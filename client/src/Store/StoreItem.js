@@ -9,7 +9,7 @@ import dj1 from '../assets/appimgs/dj1.jpg';
 import wmw1 from '../assets/appimgs/wmw1.jpg';
 import af1 from '../assets/appimgs/af1.png';
 import sv1 from '../assets/appimgs/sv1.jpg';
-import { toggleElementVisibility } from '../lib';
+import { getPrice,setupCheckout} from '../lib';
 import Aos from 'aos';
 import "aos/dist/aos.css";
 
@@ -39,50 +39,6 @@ export let StoreItem = function({item, purchases,setCart}){
         </aside>
       </article>
     );
-};
-const getPrice = function(appID,purchases,item){
-  const appFound = ownsApp(appID,purchases);
-  if (appFound){
-    return(
-      <h5>Purchased</h5>
-    )
-  }else{
-    return(
-      <h5>${item.price / 100}</h5>
-    )
-  }
-}
-
-const ownsApp = function(appID,purchases){
-  let appFound=false;
-  if (!purchases) return false;
-  purchases.forEach((order)=>{
-    if (order.appID===appID)appFound = true;
-  });
-  return appFound;
-};
-
-const setupCheckout = function(itemPrice,itemID,setCart,itemName,itemAuthor,orders){
-  //if item is purchased do not open checkout
-  let alreadyPurchased = false;
-  orders.forEach((order)=>{
-    if (itemID===order.appID) alreadyPurchased = true;
-  })
-  if (alreadyPurchased) return 0;
-  //handle checkout
-  setCart({
-    total: itemPrice,
-    itemID: itemID,
-    itemName: itemName,
-    itemAuthor: itemAuthor,
-  });
-  if(ownsApp(itemID)){
-    //item already purchased do nothing
-  }else if (localStorage.getItem('jwt')){
-    toggleElementVisibility('checkout');
-  }else{
-    toggleElementVisibility('pop-up');
-  }
 };
 
 const getBackgroundImg = function(imgName){
