@@ -199,6 +199,9 @@ router.delete('/user/wishlist/:id',authenticateToken, async(req,res,next)=>{
 router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
   const userID = req.payload._id;
   const appID = req.params.id;
+  console.log(req.body);
+  //destructure body for payment and shipping details
+  const {firstName,lastName,addrLineOne,addrLineTwo,city,state,zip,phoneNumber,ccn,cvc,expMonth,expYear} = req.body;
   let app;
   try{
     user = await getUserByDocID(userID);
@@ -219,8 +222,21 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
       {
         amount: app.price, // Amount in cents
         currency: 'usd',
-        source: 'tok_visa', // Use a test card number provided by Stripe
+        // set to stripe test card
+        source: 'tok_visa',
         description: `Charged user ${userID} for a purchase of app ${appID}`,
+        shipping: {
+          name: `${firstName} ${lastName}`,
+          address: {
+            line1: addrLineOne,
+            line2: addrLineTwo,
+            city: city,
+            state: state,
+            postal_code: zip,
+            country: 'US'
+          },
+          phone: phoneNumber
+        }
       },
       async function(err, charge) {
         if (err) {
