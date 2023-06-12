@@ -201,7 +201,7 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
   const appID = req.params.id;
   console.log(req.body);
   //destructure body for payment and shipping details
-  const {firstName,lastName,addrLineOne,addrLineTwo,city,state,zip,phoneNumber,ccn,cvc,expMonth,expYear} = req.body;
+  const {firstName,lastName,addrLineOne,addrLineTwo,city,state,zip,phoneNumber,email,ccn,cvc,expMonth,expYear} = req.body;
   let app;
   try{
     user = await getUserByDocID(userID);
@@ -220,22 +220,21 @@ router.post('/apps/:id',authenticateToken,async (req,res,next)=>{
     let order = '';
     stripe.charges.create(
       {
-        amount: app.price, // Amount in cents
-        currency: 'usd',
-        // set to stripe test card
-        source: 'tok_visa',
-        description: `Charged user ${userID} for a purchase of app ${appID}`,
-        shipping: {
-          name: `${firstName} ${lastName}`,
-          address: {
-            line1: addrLineOne,
-            line2: addrLineTwo,
-            city: city,
-            state: state,
-            postal_code: zip,
-            country: 'US'
+        "amount": app.price, //amount in cents
+        "currency": "usd",
+        "source": "tok_visa",
+        "description": `Charged user ${userID} for a purchase of app ${appID}`,
+        "shipping": {
+          "name": `${firstName} ${lastName}`,
+          "address": {
+            "line1": addrLineOne,
+            "line2": addrLineTwo,
+            "city": city,
+            "state": state,
+            "postal_code": zip,
+            "country": "US"
           },
-          phone: phoneNumber
+          "phone": phoneNumber,
         }
       },
       async function(err, charge) {
