@@ -9,7 +9,7 @@
 }
 .search-result{
   list-style: none;
-  color: white;
+  color: rgb(236, 236, 236);
   justify-self: center;
   background-color: black;
   border-radius: 18px;
@@ -19,4 +19,13 @@
   flex-direction: column;
   gap: 5px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.search-result div{
+  background-color: black;
+  border-radius: 18px;
+  padding: 20px;
 }

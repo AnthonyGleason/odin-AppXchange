@@ -21,7 +21,7 @@ export default function Store(){
     getAndUpdateStoreItems(setStoreItems);
     if (localStorage.getItem('jwt')) getAndUpdatePurchases(setPurchases);
   },[]);
-
+  
   return(
     <main className='store'>
       <Popup />
