@@ -4,7 +4,7 @@ import searchIMG from '../assets/widgets/search.svg';
 import './Nav.css';
 
 export default function Nav(){
-  const [searchInput,setSearchInput] = useState('');
+  const [searchInput,setSearchInput] = useState(true);
   return(
     <nav className='nav'>
       <a className='nav-logo' href='/AppXchange/#/'>AppXchange</a>

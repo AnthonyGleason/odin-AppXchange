@@ -19,7 +19,9 @@ export default function Login(){
       if (data.token){
         localStorage.setItem('jwt',data.token);
         console.log('logged in user');
-        window.location.href='/AppXchange/#/';
+        window.location.href = '/AppXchange/#/';
+        //refresh the page so the correct nav shows
+        window.location.reload();
       }
     })
   };

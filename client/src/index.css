@@ -47,6 +47,7 @@ a{
 }
 .yellow{
   color: rgb(255, 239, 150);
+  text-align: center;
 }
 .pop-up {
   position: fixed;

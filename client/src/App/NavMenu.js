@@ -6,7 +6,7 @@ const handleLogOut = function(){
   window.location.href = '/';
 };
 
-const checkLoginStatus = async function(loginStateSetter){
+const checkLoginStatus = async function(){
   const token = localStorage.getItem('jwt');
   let isValid = false;
   if (token) {
@@ -28,14 +28,19 @@ const checkLoginStatus = async function(loginStateSetter){
       }
     });
   }
-  loginStateSetter(isValid);
+  return isValid;
 };
 
 export default function NavMenu() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
   useEffect(() => {
-    checkLoginStatus(setIsLoggedIn);
+    const fetchLoginStatus = async () => {
+      const loginStatus = await checkLoginStatus();
+      setIsLoggedIn(loginStatus);
+    };
+    fetchLoginStatus();
   }, []);
+  
   if (isLoggedIn) {
     return (
       <ul className='nav-menu'>
