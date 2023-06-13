@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import {HashRouter as Router,Routes,Route} from 'react-router-dom'
 //import components
 import Store from './Store/Store';
 import Login from './Account/Login';
@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Nav />
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path='/' element={<Store />} />
         <Route path='/user/login' element={<Login />} />
@@ -25,7 +25,7 @@ root.render(
         <Route path='/user/orders' element={<Orders />} />
         <Route path='/search/:query' element={<SearchResults />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
     <Footer />
   </React.StrictMode>
 );

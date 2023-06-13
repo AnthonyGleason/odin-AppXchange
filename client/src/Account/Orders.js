@@ -9,7 +9,7 @@ export default function Orders(){
   const getPurchases = async function() {
     if (!localStorage.getItem('jwt')) throw new Error('User not signed in');
     try {
-      const response = await fetch(`http://localhost:5000/api/user/purchases`, {
+      const response = await fetch(`https://appxchange.herokuapp.com/api/user/purchases`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }

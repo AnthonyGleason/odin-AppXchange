@@ -10,7 +10,7 @@ const checkLoginStatus = async function(loginStateSetter){
   const token = localStorage.getItem('jwt');
   let isValid = false;
   if (token) {
-    await fetch('http://localhost:5000/api/user/verify', {
+    await fetch('https://appxchange.herokuapp.com/api/user/verify', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
@@ -39,15 +39,15 @@ export default function NavMenu() {
   if (isLoggedIn) {
     return (
       <ul className='nav-menu'>
-        <li><a href='/user/orders'>My Orders</a></li>
+        <li><a href='/AppXchange/#/user/orders'>My Orders</a></li>
         <li><p onClick={()=>{handleLogOut()}}>Log-Out</p></li>
       </ul>
     );
   } else {
     return (
       <ul className='nav-menu'>
-        <li><a href='/user/login'>Login</a></li>
-        <li><a href='/user/register'>Register</a></li>
+        <li><a href='/AppXchange/#/user/login'>Login</a></li>
+        <li><a href='/AppXchange/#/user/register'>Register</a></li>
       </ul>
     );
   }

@@ -18,7 +18,7 @@ export default function CheckoutForm({cart}){
   const [expYearInput,setExpYearInput] = useState('');
 
   const handleCheckout = async function(appID){
-    const response = await fetch(`http://localhost:5000/api/apps/${appID}`, {
+    const response = await fetch(`https://appxchange.herokuapp.com/api/apps/${appID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default function CheckoutForm({cart}){
         })
     });
     if (response.ok){
-      window.location.href='/';
+      window.location.href='/AppXchange/#/';
     }
   };
 

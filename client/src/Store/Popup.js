@@ -10,8 +10,8 @@ export default function Popup(){
       alt='cross x button'
       />
       <p>You must be signed in to purchase an app.</p>
-      <button className='form-submit' onClick={()=>{window.location.href='/user/login'}}>Login</button>
-      <button className='form-submit' onClick={()=>{window.location.href='/user/register'}}>Register</button>
+      <button className='form-submit' onClick={()=>{window.location.href='/AppXchange/#/user/login'}}>Login</button>
+      <button className='form-submit' onClick={()=>{window.location.href='/AppXchange/#/user/register'}}>Register</button>
     </div>
   )
 }

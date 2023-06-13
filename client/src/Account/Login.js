@@ -4,7 +4,7 @@ export default function Login(){
   const [emailInput,setEmailInput] = useState('');
   const [passInput,setPassInput] = useState('');
   let handleLogin = async function(){
-    await fetch('http://localhost:5000/api/user/login',{
+    await fetch('https://appxchange.herokuapp.com/api/user/login',{
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
@@ -19,12 +19,12 @@ export default function Login(){
       if (data.token){
         localStorage.setItem('jwt',data.token);
         console.log('logged in user');
-        window.location.href='/';
+        window.location.href='/AppXchange/#/';
       }
     })
   };
   return(
-    <form className='login' method='POST' action='http://localhost:5000/api/user/login'> 
+    <form className='login' method='POST' action='https://appxchange.herokuapp.com/api/user/login'> 
       <p>Login</p>
       <div>
         <label htmlFor='email'>Email</label>

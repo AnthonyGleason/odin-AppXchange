@@ -3,7 +3,7 @@ import './Register.css';
 export default function Register(){
   return(
     <div className='register'>
-      <form className='register-form' method='POST' action='http://localhost:5000/api/user/register'>
+      <form className='register-form' method='POST' action='https://appxchange.herokuapp.com/api/user/register'>
         <p>Register</p>
         <div>
           <label htmlFor='firstName'>First Name</label>

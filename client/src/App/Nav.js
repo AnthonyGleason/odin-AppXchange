@@ -7,7 +7,7 @@ export default function Nav(){
   const [searchInput,setSearchInput] = useState('');
   return(
     <nav className='nav'>
-      <a className='nav-logo' href='/'>AppXchange</a>
+      <a className='nav-logo' href='/AppXchange/#/'>AppXchange</a>
       <form method='GET' className='search'>
         <img alt='magnifying glass' className='search-logo' src={searchIMG} onClick={() => { handleSearch(searchInput) }} />
         <input onKeyDown={(e)=>{
@@ -26,5 +26,5 @@ export default function Nav(){
 const handleSearch = function(inputFieldContent){
   //invalid search cases
   if (!inputFieldContent || inputFieldContent==='') return 0;
-  window.location.href=`/search/${inputFieldContent}`;
+  window.location.href=`/AppXchange/#/search/${inputFieldContent}`;
 }

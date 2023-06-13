@@ -64,7 +64,7 @@ export const setupCheckout = function(itemPrice,itemID,setCart,itemName,itemAuth
 };
 export const getAndUpdatePurchases = async function(setPurchases) {
   try {
-    const response = await fetch(`http://localhost:5000/api/user/purchases`, {
+    const response = await fetch(`https://appxchange.herokuapp.com/api/user/purchases`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
@@ -81,7 +81,7 @@ export const getAndUpdatePurchases = async function(setPurchases) {
 };
 export const getAndUpdateSearchResults = async function(setSearchResults,searchStr){
   let searchResults = [];
-  await fetch(`http://localhost:5000/api/search/${searchStr}`,{
+  await fetch(`https://appxchange.herokuapp.com/api/search/${searchStr}`,{
     method: 'GET',
   }).then((res)=>{
     return res.json();
@@ -93,7 +93,7 @@ export const getAndUpdateSearchResults = async function(setSearchResults,searchS
   setSearchResults(searchResults);
 }
 export const getAndUpdateStoreItems = async function (setStoreItems) {
-  await fetch('http://localhost:5000/api/app', {
+  await fetch('https://appxchange.herokuapp.com/api/app', {
     method: 'GET',
   })
     .then((res) => res.json())
