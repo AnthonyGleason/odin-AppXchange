@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/AppXchange/static/css/main.4c3c9d85.css",
-    "main.js": "/AppXchange/static/js/main.01e3f090.js",
+    "main.css": "/AppXchange/static/css/main.898dc02e.css",
+    "main.js": "/AppXchange/static/js/main.2bf4cd57.js",
     "static/js/787.c4e7f8f9.chunk.js": "/AppXchange/static/js/787.c4e7f8f9.chunk.js",
     "static/media/af1.png": "/AppXchange/static/media/af1.7e3f1929ba408f8957ce.png",
     "static/media/terraria1.jpg": "/AppXchange/static/media/terraria1.55809810a3b6f51675a7.jpg",
@@ -18,12 +18,12 @@
     "static/media/mail.svg": "/AppXchange/static/media/mail.e90216c82be08fc5aea62b5d3db8cb0e.svg",
     "static/media/search.svg": "/AppXchange/static/media/search.3d6fb890f89970acb9f53be25d6ef977.svg",
     "static/media/x.svg": "/AppXchange/static/media/x.b3295ae9ce0a3b7b53fbb42a0c049fa1.svg",
-    "main.4c3c9d85.css.map": "/AppXchange/static/css/main.4c3c9d85.css.map",
-    "main.01e3f090.js.map": "/AppXchange/static/js/main.01e3f090.js.map",
+    "main.898dc02e.css.map": "/AppXchange/static/css/main.898dc02e.css.map",
+    "main.2bf4cd57.js.map": "/AppXchange/static/js/main.2bf4cd57.js.map",
     "787.c4e7f8f9.chunk.js.map": "/AppXchange/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c3c9d85.css",
-    "static/js/main.01e3f090.js"
+    "static/css/main.898dc02e.css",
+    "static/js/main.2bf4cd57.js"
   ]
 }
