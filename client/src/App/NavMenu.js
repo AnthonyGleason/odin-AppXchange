@@ -3,7 +3,8 @@ import './NavMenu.css';
 
 const handleLogOut = function(){
   localStorage.removeItem('jwt');
-  window.location.href = '/';
+  window.location.href = '/AppXchange/#/';
+  window.location.reload();
 };
 
 const checkLoginStatus = async function(){
@@ -40,7 +41,7 @@ export default function NavMenu() {
     };
     fetchLoginStatus();
   }, []);
-  
+
   if (isLoggedIn) {
     return (
       <ul className='nav-menu'>
